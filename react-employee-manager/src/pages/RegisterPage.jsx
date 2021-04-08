@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import FormInput from './../components/forms/FormInput'
-import Button from './../components/buttons/button'
+import Button from '../components/buttons/Button'
 
 
 const RegisterPageStyles = styled.aside`
@@ -27,7 +27,7 @@ const RegisterPage = (props) => {
             <FormInput label="name on the account" type="text"/>
             <FormInput label="valid email" type="email"/>
             <FormInput label="password (min 6 characters)" type="text"/>
-            <Button uiStyle="login" label="create a free account"/>
+            <Button uiStyle="signup" label="create a free account"/>
         </RegisterPageStyles>        
      );
 }
