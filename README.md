@@ -1,4 +1,4 @@
-# React Firebase Starter Kit
+# React Firebase employee manager
 Starter kit is just an extension of the create react app project [Create React App](https://github.com/facebook/create-react-app).
 
 ### Includes The Following Modules
