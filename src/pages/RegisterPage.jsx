@@ -30,7 +30,7 @@ const RegisterPage = (props) => {
     const [isValid, setIsValid] = useState(false)
     
 
-    const handleClick = (e) =>{
+    const handleNewAccount = (e) =>{
         // test our Auth
         firebaseApp.auth().createUserWithEmailAndPassword(email, password)
         .then(userCredential=>{
@@ -39,8 +39,9 @@ const RegisterPage = (props) => {
             setIsValid(true)
         })
         .catch(error=>{
-            console.log(error.code)
-            console.log(error.message)
+            console.log(error)
+            // console.log(error.code)
+            // console.log(error.message)
         })
     }
 
@@ -57,7 +58,7 @@ const RegisterPage = (props) => {
                 <FormInput label="name on the account" type="text"/>
                 <FormInput label="valid email" type="email" onChange={(e)=> setEmail(e.target.value.trim())}/>
                 <FormInput label="password (min 6 characters)" type="text" onChange={(e)=> setPassword(e.target.value.trim())}/>
-                <Button className="create-account" label="create a free account" uiStyle="signup" onClick={handleClick}/>
+                <Button className="create-account" label="create a free account" uiStyle="signup" onClick={handleNewAccount}/>
             </RegisterPageStyles>        
          );
     }

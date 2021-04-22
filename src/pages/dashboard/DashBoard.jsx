@@ -1,8 +1,13 @@
 import React, {useContext} from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link, useRouteMatch, Switch, Route} from 'react-router-dom';
 import styled from 'styled-components'
 
 import AuthContext from './../../components/auth/AuthContext';
+import ViewAllPanel from './panels/ViewAllPanel';
+import AddPanel from './panels/AddPanel';
+import EditPanel from './panels/EditPanel';
+import DeletePanel from './panels/DeletePanel';
+
 
 
 const DashBoardStyles = styled.header ` 
@@ -28,6 +33,9 @@ const SideBar = styled.aside `
         font-size: 12px;
         margin-bottom: 0.35rem;
     }
+    a {
+        text-decoration: none;
+    }
 `
 
 const Panels = styled.aside `  
@@ -38,7 +46,9 @@ const Panels = styled.aside `
 const DashBoard = (props) => {
     //access the authContext
      const auth = useContext(AuthContext)
-     console.log("dashboard render")
+     const {path, url} = useRouteMatch()
+
+
   
      if(auth.isUser){
 
@@ -50,14 +60,20 @@ const DashBoard = (props) => {
                         <p>firebase who new</p>
                     </header>
                     <ul>
-                        <li>view all</li>
-                        <li>add new employee</li>
-                        <li>edit an employee</li>
-                        <li>remove an employee</li>
+                        <li><Link to={`${url}`}>view all</Link></li>
+                        <li><Link to={`${url}/add`}>add new employee</Link></li>
+                        <li><Link to={`${url}/edit`}>edit an employee</Link></li>
+                        <li><Link to={`${url}/delete`}>remove an employee</Link></li>
                     </ul>
                 </SideBar>
     
                 <Panels>
+                    <Switch>
+                        <Route exact path={path}><ViewAllPanel/></Route>
+                        <Route path={`${path}/add`}><AddPanel/></Route>
+                        <Route path={`${path}/edit`}><EditPanel/></Route>
+                        <Route path={`${path}/delete`}><DeletePanel/></Route>
+                    </Switch>
     
                 </Panels>
             </DashBoardStyles>
